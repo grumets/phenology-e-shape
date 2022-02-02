@@ -59,13 +59,31 @@
   ],
   "outputs": [
     {
-      "id": "ndvi-results.tif",
+      "id": "imageSOS.tif",
       "outputType": "individual",
       "valueType": "value",
-      "description": "Output NDVI SOS, POS, EOS images in TIFF format",
-      "name": "Output image in TIFF format",
+      "description": "Output SOS image in TIFF format",
+      "name": "Output SOS image in TIFF format",
       "valueSchema": "url",
-      "target": "./results.zip"
+      "target": "SOS.tif"
+    },
+    {
+      "id": "imagePOS.tif",
+      "outputType": "individual",
+      "valueType": "value",
+      "description": "Output POS image in TIFF format",
+      "name": "Output POS image in TIFF format",
+      "valueSchema": "url",
+      "target": "POS.tif"
+    },
+    {
+      "id": "imageEOS.tif",
+      "outputType": "individual",
+      "valueType": "value",
+      "description": "Output EOS image in TIFF format",
+      "name": "Output EOS image in TIFF format",
+      "valueSchema": "url",
+      "target": "EOS.tif"
     }
   ]
 }
