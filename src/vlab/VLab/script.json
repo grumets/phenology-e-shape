@@ -1,0 +1,19 @@
+{
+  "scripts": [
+    {
+      "repoPath": "run.sh",
+      "targetPath": "run.sh",
+      "pathType": "FILE"
+ },
+ {
+   "repoPath": "S2_phenology.py",
+   "targetPath": "S2_phenolgy.py",
+   "pathType": "FILE"
+ },
+ {
+   "repoPath": "phenology_calc.py",
+   "targetPath": "phenology_calc.py",
+   "pathType": "FILE"
+ }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "inputs": [
+    {
+      "id": "DataObject_01",
+      "inputType": "individual",
+      "valueType": "value",
+      "description": "Sentinel 2A scene",
+      "name": "Sentinel 2A scene",
+      "obligation": false,
+      "hasDefault": false,
+      "valueSchema": "sat_product",
+      "target": "data/sat_product"
+     },
+     {
+       "id": "DataObject_02",
+       "inputType": "individual",
+       "valueType": "value",
+       "description": "URL to download the Sentinel 2A scene",
+       "name": "Sentinel 2A scene URL",
+       "obligation": false,
+       "hasDefault": false,
+       "valueSchema": "url",
+       "target": "data/img.zip"
+    },
+    {
+      "id": "data1",
+      "inputType": "individual",
+      "valueType": "value",
+      "description": "Sensing Start Time",
+      "name": "Data start",
+      "obligation": true,
+      "hasDefault": false,
+      "valueSchema": "string_parameter",
+      "target": "start"
+   },
+    {
+      "id": "data2",
+      "inputType": "individual",
+      "valueType": "value",
+      "description": "Sensing Stop Time",
+      "name": "Data end",
+      "obligation": true,
+      "hasDefault": false,
+      "valueSchema": "string_parameter",
+      "target": "end"
+    },
+    {
+        "id": "bbox",
+        "inputType": "individual",
+        "valueType": "value",
+        "description": "Bounding Box (comma separated numbers: west,south,east,north)",
+        "name": "Bounding Box ",
+        "obligation": false,
+        "hasDefault": true,
+        "defaultValue": false,
+        "valueSchema": "bbox",
+        "target": "bbox_l"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "ndvi-results.tif",
+      "outputType": "individual",
+      "valueType": "value",
+      "description": "Output NDVI SOS, POS, EOS images in TIFF format",
+      "name": "Output image in TIFF format",
+      "valueSchema": "url",
+      "target": "./results.zip"
+    }
+  ]
+}
