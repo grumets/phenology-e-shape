@@ -1,8 +1,4 @@
 import os,sys
-#import urllib
-#from urllib import request
-
-##
 from pathlib import Path
 from glob import glob
 
@@ -15,27 +11,14 @@ import xarray as xr
 import pandas as pd
 from sentinelsat import SentinelAPI, read_geojson, geojson_to_wkt
 from datetime import date
-api = SentinelAPI('iserra', 'Creaf-21', 'https://scihub.copernicus.eu/dhus')
+api = SentinelAPI('user', 'password', 'https://scihub.copernicus.eu/dhus')
 import rioxarray
 import json
-
-#fileBbox = bboxgeo   #geojosn file closed linestring
-
-#bboxgeo = 'bboxgeo.json'
-#bboxgeo = sys.argv[1]
-
-#fileTemporal = sys.argv[2]   #txt file
 
 fileBbox = read_geojson(bboxgeo)
 ARG=json.load(open("vlabparams.json","r"))
 
-"""
-bboxgeo
-{'data1': '20210101', 'data2': '20211231', 'bbox': 'false'}
--- data1 20210101 -- data2 20211231
-"""
-
-print(str(ARG)) #f
+print(str(ARG))
 arg=""
 for k,v in ARG.items():
     if (v is False)|(v in ["False","false","F"]):
@@ -46,29 +29,8 @@ for k,v in ARG.items():
             v="true"
         arg+=" -- "+" ".join([k,str(v)])
 print(arg)
-#print(str(ARG['bbox'].split(","))) #[false]
-
-#print(str(ARG['bbox'])) #19.1031, 64.0410, 19.8981,64.4038
-#dates[0]=ARG['bbox'].split(",")[0]
-#dates[1]=ARG['bbox'].split(",")[1]
 
 dates =[ARG['data1'],ARG['data2']]
-print(dates[0])
-print(dates[1])
-
-footprint = geojson_to_wkt(fileBbox)
-#footprint = geojson_to_wkt(read_geojson(fileBbox))
-
-print(footprint)
-"""
-with open(fileTemporal) as f:
-#with open('input/dates.txt') as f:
-    contents = f.read()
-    dates = contents.split(",")
-    print(dates)
-"""
-#print(arg[0])
-#print(dates[1])
 
 footprint = geojson_to_wkt(read_geojson(bboxgeo))
 products = api.query(footprint,
@@ -87,3 +49,46 @@ for i in products:
 output = "output.txt"
 with open(output, "w") as outputfile:
     outputfile.write(len(products))
+
+
+products_df = api.to_dataframe(products)
+# sort and limit to first X sorted products
+products_df_sorted = products_df.sort_values(['cloudcoverpercentage', 'ingestiondate'], ascending=[True, True])
+products_df_sorted = products_df_sorted.head()
+# download sorted and reduced products
+#api.download_all(products_df_sorted.index)  #donwload products
+
+if not os.path.exists('temp'):
+    os.makedirs('temp')
+
+download_path = './temp'
+api.download_all(products_df_sorted.index,directory_path=download_path)
+
+ds = products_df['title'].to_xarray()  #xarray.DataArray
+
+
+def unzip(zipped_filename):
+    with zipfile.ZipFile(zipped_filename, 'r') as zip_ref:
+        if not os.path.exists('unzipped'):
+            os.makedirs('unzipped')
+        zip_ref.extractall('./unzipped')
+
+if not os.path.exists('unzipped'):
+    os.makedirs('unzipped')
+
+
+download_unzipped_path = os.path.join(os.getcwd(), 'unzipped')
+
+
+extension = ".zip"
+for item in os.listdir(download_path):
+    print(item)
+    if item.endswith(extension): # check for ".zip" extension
+        file_name = os.path.join(download_path, item) # get full path of files
+        zip_ref = zipfile.ZipFile(file_name) # create zipfile object
+        zip_ref.extractall(download_unzipped_path) # extract file to dir
+        zip_ref.close() # close file
+
+
+files = os.listdir(download_unzipped_path)
+print(files)
