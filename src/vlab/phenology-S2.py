@@ -11,7 +11,6 @@ import xarray as xr
 import pandas as pd
 from sentinelsat import SentinelAPI, read_geojson, geojson_to_wkt
 from datetime import date
-api = SentinelAPI('user', 'password', 'https://scihub.copernicus.eu/dhus')
 import rioxarray
 import json
 
@@ -31,6 +30,9 @@ for k,v in ARG.items():
 print(arg)
 
 dates =[ARG['data1'],ARG['data2']]
+
+#api = SentinelAPI('user', 'password', 'https://scihub.copernicus.eu/dhus')
+api = SentinelAPI(user, passw, 'https://scihub.copernicus.eu/dhus')
 
 footprint = geojson_to_wkt(read_geojson(bboxgeo))
 products = api.query(footprint,
