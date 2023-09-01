@@ -1,28 +1,6 @@
 {
   "inputs": [
     {
-      "id": "DataObject_01",
-      "inputType": "individual",
-      "valueType": "value",
-      "description": "Sentinel 2A scene",
-      "name": "Sentinel 2A scene",
-      "obligation": false,
-      "hasDefault": false,
-      "valueSchema": "sat_product",
-      "target": "data/sat_product"
-     },
-     {
-       "id": "DataObject_02",
-       "inputType": "individual",
-       "valueType": "value",
-       "description": "URL to download the Sentinel 2A scene",
-       "name": "Sentinel 2A scene URL",
-       "obligation": false,
-       "hasDefault": false,
-       "valueSchema": "url",
-       "target": "data/img.zip"
-    },
-    {
       "id": "data1",
       "inputType": "individual",
       "valueType": "value",
@@ -45,11 +23,22 @@
       "target": "end"
     },
     {
+      "id": "Databbox",
+      "inputType": "individual",
+      "valueType": "value",
+      "description": "URL to geojson",
+      "name": "BBox",
+      "obligation": false,
+      "hasDefault": false,
+      "valueSchema": "url",
+      "target": "bboxgeo.json"
+    },
+    {
         "id": "bbox",
         "inputType": "individual",
         "valueType": "value",
-        "description": "Bounding Box (comma separated numbers: west,south,east,north)",
-        "name": "Bounding Box ",
+        "description": "Bounding Box (numbers separated by commas: west,south,east,north)",
+        "name": "Bounding Box",
         "obligation": false,
         "hasDefault": true,
         "defaultValue": false,
@@ -59,31 +48,85 @@
   ],
   "outputs": [
     {
-      "id": "imageSOS.tif",
+      "id": "output.txt",
       "outputType": "individual",
       "valueType": "value",
-      "description": "Output SOS image in TIFF format",
-      "name": "Output SOS image in TIFF format",
+      "description": "The output file",
+      "name": "Output.txt",
       "valueSchema": "url",
-      "target": "SOS.tif"
+      "target": "output/output.txt"
     },
     {
-      "id": "imagePOS.tif",
+      "id": "DataObject_output1",
       "outputType": "individual",
       "valueType": "value",
-      "description": "Output POS image in TIFF format",
-      "name": "Output POS image in TIFF format",
+      "description": "Output SOS DOY image in TIFF",
+      "name": "Output SOS DOY image in TIFF",
       "valueSchema": "url",
-      "target": "POS.tif"
+      "target": "output/sos.tif"
     },
     {
-      "id": "imageEOS.tif",
+      "id": "DataObject_output2",
       "outputType": "individual",
       "valueType": "value",
-      "description": "Output EOS image in TIFF format",
-      "name": "Output EOS image in TIFF format",
+      "description": "Output VSOS image in TIFF",
+      "name": "Output VSOS image in TIFF",
       "valueSchema": "url",
-      "target": "EOS.tif"
+      "target": "output/vsos.tif"
+    },
+    {
+      "id": "DataObject_output3",
+      "outputType": "individual",
+      "valueType": "value",
+      "description": "Output POS DOY image in TIFF",
+      "name": "Output POS DOY image in TIFF",
+      "valueSchema": "url",
+      "target": "output/pos.tif"
+    },
+    {
+      "id": "DataObject_output4",
+      "outputType": "individual",
+      "valueType": "value",
+      "description": "Output VPOS image in TIFF",
+      "name": "Output VPOS image in TIFF",
+      "valueSchema": "url",
+      "target": "output/vpos.tif"
+    },
+    {
+      "id": "DataObject_output5",
+      "outputType": "individual",
+      "valueType": "value",
+      "description": "Output EOS DOY image in TIFF",
+      "name": "Output EOS DOY image in TIFF",
+      "valueSchema": "url",
+      "target": "output/eos.tif"
+    },
+    {
+      "id": "DataObject_output6",
+      "outputType": "individual",
+      "valueType": "value",
+      "description": "Output VEOS image in TIFF",
+      "name": "Output VEOS image in TIFF",
+      "valueSchema": "url",
+      "target": "output/veos.tif"
+    },
+    {
+      "id": "DataObject_output7",
+      "outputType": "individual",
+      "valueType": "value",
+      "description": "Plot - phenology statistics png",
+      "name": "Plot - phenology statistics png",
+      "valueSchema": "url",
+      "target": "output/statsPheno.png"
+    },
+    {
+      "id": "DataObject_output8",
+      "outputType": "individual",
+      "valueType": "value",
+      "description": "Plot - NDVI time-series png",
+      "name": "Plot - NDVI time-series png",
+      "valueSchema": "url",
+      "target": "output/graph.png"
     }
   ]
 }
