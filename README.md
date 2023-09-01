@@ -7,8 +7,8 @@ The code aims to generate a best practice to calculate vegetation phenology meas
 - Generate a zonal time series.
 - Calculate phenology products:  Greenup, Maturity, Senescence.
 
-The code is written in Python.
-In odc and dias folders: the code is written using Jupyter notebooks.
+The code is written in Python.<br />
+In odc and dias folders: the code is written using Jupyter notebooks.<br />
 In the VLAB folder, the Python script and the specific folder and files are to be executed through the virtual laboratory: https://vlab.geodab.eu/
 
 
