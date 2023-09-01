@@ -9,5 +9,5 @@ The code aims to generate a best practice to calculate vegetation phenology meas
 
 The code is written in Python and
 requires the following packages: rasterio, rioxarray, numpay.
-In odc and dias folder: the code is written using Jupyter notebooks.
+In odc and dias folders: the code is written using Jupyter notebooks.
 Vlab folder:  python script and the specific folder and files to be executed through the virtual laboratory: https://vlab.geodab.eu/
